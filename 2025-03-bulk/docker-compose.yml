@@ -1,8 +1,0 @@
-services:
-  bulk_sample_202503:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    container_name: 'bulk_sample_202503'
-    volumes:
-      - ./:/app
