@@ -1,3 +1,6 @@
+# インデックスの作成
+
+```
 PUT /kakinosuke_202503
 {
   "settings": {
@@ -68,3 +71,4 @@ PUT /kakinosuke_202503
     }
   }
 }
+```

@@ -1,3 +1,6 @@
+# ドキュメント投入用のパイプラインの作成
+
+```
 PUT /_ingest/pipeline/japanese-text-embeddings
 {
   "description" : "Text embedding pipeline",
@@ -13,3 +16,4 @@ PUT /_ingest/pipeline/japanese-text-embeddings
     }
   ]
 }
+```
