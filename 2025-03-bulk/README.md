@@ -83,9 +83,9 @@ docker-compose.yml があるディレクトリで下記を実行する。
 
 ### 2.2.3. コンテナ内で bash を実行
 
-```docker exec -it sios_es_blog_202503 /bin/bash```
+```docker exec -it bulk_sample_202503 /bin/bash```
 
-（"sios_es_blog_202503"はコンテナ名）
+（"bulk_sample_202503"はコンテナ名）
 
 
 ## 2.3. Elasticsearch へのデータ登録
