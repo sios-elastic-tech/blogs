@@ -48,7 +48,6 @@
 - es_scripts/6_create_ingest_pipeline.txt データ取り込み用のパイプラインの作成
 - es_scripts/7_create_alias.txt エイリアスの作成
 - es_scripts/9_create_api_key.txt 書き込み用の API Key の作成
-- 
 
 ### 2.1.3. .env ファイルに動作に必要な情報を記載する。
 
