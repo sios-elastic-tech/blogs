@@ -1,7 +1,7 @@
 # インデックスのフィールドの作成
 
 ```
-PUT /kakinosuke_202503/_mappings
+PUT /kakinosuke_202503/_mapping
 {
   "dynamic": false,
   "_source": {
