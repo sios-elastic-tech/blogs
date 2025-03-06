@@ -19,7 +19,7 @@ def setup_logger(logger_name: str, log_level: str = DEFAULT_LOG_LEVEL) -> loggin
     ログの基本設定を行う
 
     Parameters:
-    logger_name (str): ロガー名
+    logger_name (str): ロガー名。
     log_level (str): ログレベルを指定する。デフォルトは 'INFO'。
 
     Returns:

@@ -5,7 +5,6 @@ MIT License
 """
 
 from typing import Iterable
-import logging
 
 from elastic.es_consts import SEARCH_INDEX
 from elasticsearch import Elasticsearch, helpers
@@ -16,6 +15,13 @@ logger = setup_logger(__name__)
 def create_es_client(elasticsearch_endpoint: str, api_key_encoded: str) -> Elasticsearch:
     """
     Elasticsearch へアクセスするための client を生成する。
+
+    Parameters:
+    elasticsearch_endpoint (str): Elasticsearch の endpoint (URL)。
+    api_key_encoded (str): Elasticsearch にアクセスするための (encoded された) Key。
+
+    Returns:
+    生成された Elasticsearch の client。
     """
     try:
         if elasticsearch_endpoint and api_key_encoded:
@@ -35,8 +41,12 @@ def streaming_bulk_wrapper(es_client: Elasticsearch, actions: Iterable) -> int:
     bulk を使って、データを投入する。
     (streaming_bulk を使用する)
 
+    Parameters:
+    es_client (Elasticsearch): Elasticsearch の client。
+    actions (Iterable): Elasticsearch に登録するデータの Iterable。
+
     Returns:
-    投入したドキュメント数
+    投入したドキュメント数。
     
     See:
     https://elasticsearch-py.readthedocs.io/en/latest/helpers.html
@@ -55,6 +65,10 @@ def streaming_bulk_wrapper(es_client: Elasticsearch, actions: Iterable) -> int:
 def refresh_index(es_client: Elasticsearch, index_name: str = SEARCH_INDEX):
     """
     bulk 後などに、refresh を呼び出す。
+
+    Parameters:
+    es_client (Elasticsearch): Elasticsearch の client。
+    index_name (str): Refresh 対象のインデックス名（デフォルトは es_consts.py で定義した SEARCH_INDEX）。
     """
     try:
         es_client.indices.refresh(index=index_name)

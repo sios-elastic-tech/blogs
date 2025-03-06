@@ -13,7 +13,6 @@ Usage: python bulk_from_txt.py chunked_textfilepath
 from io import TextIOWrapper
 import os
 import sys
-import logging
 
 from typing import Iterable
 from dotenv import load_dotenv
@@ -29,6 +28,9 @@ from common.setup_logger import setup_logger
 def initialize_es() -> Elasticsearch:
     """
     Elasticsearchの初期化を行う。
+
+    Returns:
+    生成した Elasticsearch の client。
     """
     load_dotenv(verbose=True)
     elasticsearch_endpoint = os.getenv('elasticsearch_endpoint')
@@ -46,6 +48,14 @@ def initialize_es() -> Elasticsearch:
 def data_generator(input_file: TextIOWrapper, index_name: str = SEARCH_INDEX, ingest_pipeline_name: str = INGEST_PIPELINE) -> Iterable:
     """
     ファイルを1行ずつ読み取り、ドキュメント登録可能な形式にして返す。
+
+    Parameters:
+    input_file (TextIOWrapper) : 読み取り元のテキストファイル。
+    index_name (str) : ドキュメント登録先のインデックス名（デフォルトは es_consts.py で定義した SEARCH_INDEX）。
+    ingest_pipeline_name (str) : ドキュメント登録時に呼び出すパイプライン名（デフォルトは es_consts.py で定義した INGEST_PIPELINE）。
+
+    Returns:
+    ドキュメント登録用に生成した Iterable。
     """
     for chunk_no, content in enumerate(input_file):
         # 末尾の改行文字を削除する。
@@ -62,24 +72,36 @@ def data_generator(input_file: TextIOWrapper, index_name: str = SEARCH_INDEX, in
         }
 
 
-def bulk_from_file(es_client: Elasticsearch, input_text_filename: str, index_name: str = SEARCH_INDEX, refresh: bool = False):
+def bulk_from_file(es_client: Elasticsearch, chunked_textfilepath: str, index_name: str = SEARCH_INDEX, refresh: bool = False):
     """
     1つのtextファイルを1行ずつ読み込んで、elasticsearch にドキュメント登録する。
+
+    Parameters:
+    es_client (Elasticsearch) : Elasticsearch の client。
+    chunked_textfilepath (str) : 読み取り元のテキストファイルのパス。
+    index_name (str) : ドキュメント登録先のインデックス名（デフォルトは es_consts.py で定義した SEARCH_INDEX）。
+    refresh (bool) : ドキュメント登録後に refresh を呼び出すか？（ディフォルトは false ）。
     """
     try:
-        with open(file=input_text_filename, buffering=-1, encoding="utf-8") as input_file:
+        with open(file=chunked_textfilepath, buffering=-1, encoding="utf-8") as input_file:
             success_count = streaming_bulk_wrapper(es_client=es_client, actions=data_generator(input_file))
             logger.info(f'{success_count=}')
             
             if refresh and success_count > 0:
                 refresh_index(es_client, index_name=index_name)
     except Exception as e:
-        logger.error(f'Error processing file {input_text_filename}: {e}')
+        logger.error(f'Error processing file {chunked_textfilepath}: {e}')
 
 
 # ----- main -----
 if __name__ == "__main__":
     logger = setup_logger(__name__)
+
+    if len(sys.argv) < 2:
+        logger.error('Usage: python bulk_from_txt.py <chunked_textfilepath>')
+        sys.exit(1)
+
+    chunked_textfilepath: str = sys.argv[1]
 
     es_client = initialize_es()
 
@@ -87,10 +109,4 @@ if __name__ == "__main__":
         logger.error('Initialization failed.')
         sys.exit(1)
 
-    if len(sys.argv) < 2:
-        logger.error('Usage: python bulk_from_txt.py <chunked_textfilepath>')
-        sys.exit(1)
-
-    text_filepath: str = sys.argv[1]
-
-    bulk_from_file(es_client=es_client, input_text_filename=text_filepath, index_name=SEARCH_INDEX, refresh=True)
+    bulk_from_file(es_client=es_client, chunked_textfilepath=chunked_textfilepath, index_name=SEARCH_INDEX, refresh=True)
