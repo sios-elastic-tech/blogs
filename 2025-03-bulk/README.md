@@ -1,8 +1,8 @@
-# Bulk API を使った Elasticsearch へのドキュメント登録サンプル
+# Bulk API を使った Elasticsearch へのドキュメント一括登録サンプル
 
 # 1. 概要
 
-2025年3月に https://elastic.sios.jp/category/blog/ にて公開予定のブログ「Bulk API （Pythonを使ってのドキュメントの一括登録）」用に作成した簡易アプリケーションです。
+2025年3月に https://elastic.sios.jp/category/blog/ にて公開予定のブログ「Bulk API （Pythonからのドキュメントの一括登録）」用に作成した簡易アプリケーションです。
 
 ## できること
 
@@ -10,7 +10,7 @@
 
 ## 動作に必要な環境など
 
-- Elastic Cloud （筆者は Enterprise Edition v8.17.2 で動作確認）
+- Elastic Cloud （筆者は Enterprise Edition v8.17.3 で動作確認）
 - Docker
 
 その他、下記のライブラリは、自動でダウンロードされます。
@@ -42,17 +42,17 @@
 
 最後の API Key の実行結果（encodedされた Key）は、次の 2.1.3. で使うのでメモ帳などに一時保存しておきます。
 
-- es_scripts/3_create_synonyms_set.txt 同義語セットの作成
-- es_scripts/4_create_index.txt 書き込み先のインデックスの作成
-- es_scripts/5_create_index_mappings.txt 書き込み先のインデックスのフィールドの作成
-- es_scripts/6_create_ingest_pipeline.txt データ取り込み用のパイプラインの作成
-- es_scripts/7_create_alias.txt エイリアスの作成
-- es_scripts/9_create_api_key.txt 書き込み用の API Key の作成
+- es_scripts/3_create_synonyms_set.md 同義語セットの作成
+- es_scripts/4_create_index.md 書き込み先のインデックスの作成
+- es_scripts/5_create_index_mappings.md 書き込み先のインデックスのフィールドの作成
+- es_scripts/6_create_ingest_pipeline.md データ取り込み用のパイプラインの作成
+- es_scripts/7_create_alias.md エイリアスの作成
+- es_scripts/9_create_api_key.md 書き込み用の API Key の作成
 
 ### 2.1.3. .env ファイルに動作に必要な情報を記載する。
 
 Elasticsearch endpoint の取得方法は、
-2025年3月に公開予定のブログ「Bulk API （Pythonを使ってのドキュメントの一括登録）」
+2025年3月に公開予定のブログ「Bulk API （Pythonからのドキュメントの一括登録）」
 に記載予定です。
 
 write_api_key_encoded には、先ほど取得した、書き込み用の API Key の実行結果を貼り付けます。
@@ -111,7 +111,8 @@ docker-compose.yml があるディレクトリで下記を実行する。
 | ./README.md | このファイル |
 | ./requirements.txt | 動作に必要なライブラリの指定ファイル |
 | data/kakinosuke.txt_chunked.txt | 桃太郎を改変した柿之助をチャンキング処理したファイル |
-| es_scripts/*.txt | Elasticsearch用の各種設定スクリプト |
+| data/README.md | kakinosuke.txt_chunked.txt の説明ファイル |
+| es_scripts/*.md | Elasticsearch用の各種設定スクリプト |
 | src/bulk_from_txt.py | テキストファイルを読み込んで、Elasticsearch へ データ登録するプログラム |
 | src/common/setup_logger.py | ロガーを設定する関数 |
 | src/elastic/es_consts.py | Elasticsearch関連の定数定義ファイル |
