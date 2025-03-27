@@ -30,13 +30,13 @@ def setup_logger(
     ログの基本設定を行う
 
     Parameters:
-    logger_name (str): ロガー名。
-    log_level (str): ログレベルを指定する。デフォルトは 'INFO'。
-    log_format (str): ログのフォーマットを指定する。デフォルトは DEFAULT_LOG_FORMAT。
-    date_format (str): 日付のフォーマットを指定する。デフォルトは '[%X]'。
+        logger_name (str): ロガー名。
+        log_level (str): ログレベルを指定する。デフォルトは 'INFO'。
+        log_format (str): ログのフォーマットを指定する。デフォルトは DEFAULT_LOG_FORMAT。
+        date_format (str): 日付のフォーマットを指定する。デフォルトは '[%X]'。
 
     Returns:
-    logging.Logger: 設定されたロガーインスタンス。
+        logging.Logger: 設定されたロガーインスタンス。
     """
     if log_level not in [DEBUG, INFO, WARNING, ERROR, CRITICAL]:
         log_level = DEFAULT_LOG_LEVEL
