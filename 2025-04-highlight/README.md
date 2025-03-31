@@ -126,8 +126,8 @@ https://localhost:8501
 | ./LICENSE | ライセンスを記載したファイル |
 | ./README.md | このファイル |
 | ./requirements.txt | 動作に必要なライブラリの指定ファイル |
-| ./highlight-no-sample.png | ハイライト表示:しない のサンプル画面 |
-| ./highlight-yes-sample.png | ハイライト表示:する のサンプル画面 |
+| ./highlight-no-sample.png | ハイライト表示する:いいえ のサンプル画面 |
+| ./highlight-yes-sample.png | ハイライト表示する:はい のサンプル画面 |
 | es_scripts/*.md | Elasticsearch用の各種設定スクリプト |
 | src/app.py | 検索アプリの本体 |
 | src/common/load_env_wrapper.py | .env の内容を読み取る関数 |
