@@ -123,7 +123,7 @@ https://localhost:8501
 | ./.env | 接続に必要な API Key などを記載するファイル |
 | ./docker-compose.yml | Docker の Compose ファイル |
 | ./Dockerfile | Docerfile |
-| ./License.txt | ライセンスを記載したファイル |
+| ./LICENSE | ライセンスを記載したファイル |
 | ./README.md | このファイル |
 | ./requirements.txt | 動作に必要なライブラリの指定ファイル |
 | ./highlight-no-sample.png | ハイライト表示:しない のサンプル画面 |
