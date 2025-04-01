@@ -2,7 +2,8 @@
 
 # 1. 概要
 
-https://elastic.sios.jp/category/blog/ にて2025年4月に公開予定のブログ「ハイライト表示」用に作成した簡易アプリケーションです。
+https://elastic.sios.jp/blog/highlighting-search-results-in-elasticsearch/ にて2025年4月に公開のブログ
+「Elasticsearch での検索結果のハイライト表示」用に作成した簡易アプリケーションです。
 
 ## できること
 
