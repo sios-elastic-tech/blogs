@@ -2,7 +2,7 @@
 
 # 1. 概要
 
-https://elastic.sios.jp/blog/xxx/ にて2025年4月に公開のブログ
+https://elastic.sios.jp/blog/search-using-user-dictionary-registration-in-elasticsearch/ にて2025年4月に公開のブログ
 「Elasticsearchでのユーザー辞書登録を利用した検索」で使用したElasticsearch用のリクエストです。
 
 詳細は、リンク先のブログを参照してください。
