@@ -27,3 +27,24 @@ GET /ngram_sample_202504/_search
 }
 ```
 
+# match_phrase を利用した検索リクエスト
+
+```
+GET /ngram_sample_202504/_search
+{
+  "query": {
+    "bool": {
+      "must": {
+        "match_phrase": {
+          "content.ngram": "タイパ"
+        }
+      },
+      "should": {
+        "match": {
+          "content": "タイパ"
+        }
+      }
+    }
+  }
+}
+```
