@@ -34,17 +34,23 @@ GET /ngram_sample_202504/_search
 {
   "query": {
     "bool": {
-      "must": {
-        "match_phrase": {
-          "content.ngram": "タイパ"
+      "should": [
+        {
+            "match_phrase": {
+                "content.ngram": {
+                    "query": "タイパ",
+                    "boost": 5
+                }
+            }
+        },
+        {
+            "match": {
+                "content": "タイパ"
+            }
         }
-      },
-      "should": {
-        "match": {
-          "content": "タイパ"
-        }
-      }
+      ]
     }
-  }
+  },
+  "min_score": 5
 }
 ```
