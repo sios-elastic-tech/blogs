@@ -19,9 +19,3 @@ POST /_security/api_key
   }
 }
 ```
-
-  "encoded": "aDdVOGhaWUJQX1Z1MEZYSDlzUDU6YmxsbGlPUjhFVUdXNEY1X01yRkdLQQ=="
-
-  "encoded": "ek9yekU1WUJaSUZOcVRqS3Z2dU86bGwzVTZ1MGhTQ2FMOGM5YTdjWm4wZw=="  (for local (broken))
-
-  
