@@ -78,7 +78,7 @@ Web Browser から http://localhost:5000/ にアクセスして、医薬品検�
 
 下記の動画のような動きになります。
 
-<video src="./search_medicine_20250501.mp4" muted="true"></video>
+<video src="./search_medicine_20250501.mp4" controls="true" muted="true"></video>
 
 ## ファイルの説明
 
