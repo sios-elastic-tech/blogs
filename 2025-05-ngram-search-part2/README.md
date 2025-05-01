@@ -3,7 +3,7 @@
 ## 概要
 
 https://elastic.sios.jp/category/blog/ で公開予定のブログ
-「Elasticsearch での N-gram 検索 (Part 2) 医薬品マスタの検索アプリケーションの作成」
+「Elasticsearch での N-gram 検索 (Part 2) 医薬品マスタの検索」
 で使用したサンプルアプリケーションです。
 
 医薬品名を2文字以上入力することで医薬品の候補を絞り込みます。
