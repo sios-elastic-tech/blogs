@@ -15,7 +15,7 @@ https://elastic.sios.jp/category/blog/ で公開予定のブログ
 
 ## 動作に必要な環境など
 
-- Elasticsearch (筆者は Elastic Cloud 8.18.0 で動作確認)
+- Elasticsearch (筆者は Elastic Cloud 8.18.1 (Enterprise License) で動作確認)
 - Docker (筆者は Rancher Desktop 1.18.2 で動作確認)
 
 その他、下記は、自動でダウンロードされます。
