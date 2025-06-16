@@ -64,7 +64,7 @@ https://elastic.sios.jp/category/blog/ で公開予定のブログ
 
 ## 4.5. 読み取り用 API Key の作成
 
-[./es_requests/05_create_api_key.md](./es_requests/05_create_api_key.md)
+[./es_requests/5_create_api_key.md](./es_requests/5_create_api_key.md)
 
 に記載している読み取り用 Access Key の作成リクエストをElastic の Kibana の Console から実行します。
 
@@ -98,7 +98,7 @@ docker-compose.yml があるディレクトリで下記を実行します。
 
 ```docker exec -it rbac_sample_202506 /bin/bash```
 
-("rbac_sample_202505"はコンテナ名)
+("rbac_sample_202506"はコンテナ名)
 
 
 ## 5.4. ログイン画面の表示

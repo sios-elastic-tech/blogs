@@ -2,7 +2,7 @@
 
 検索時に利用する Access Key を発行するためのリクエスト。
 
-request for sales user
+## request for sales user
 
 ```
 POST /_security/api_key
@@ -35,7 +35,9 @@ response
 }
 ```
 
-request for hr user
+encoded の値を、config.yaml へ転記します。
+
+## request for hr user
 
 ```
 POST /_security/api_key
@@ -68,7 +70,9 @@ response
 }
 ```
 
-request for saled_and_hr_user
+encoded の値を、config.yaml へ転記します。
+
+## request for saled_and_hr_user
 
 ```
 POST /_security/api_key
@@ -101,7 +105,9 @@ response
 }
 ```
 
+encoded の値を、config.yaml へ転記します。
 
+---
 
 今回は簡易な動作検証のため、"expiration":"10d" を指定していますが、
 本番運用では適切な値に設定することを推奨します。
@@ -113,7 +119,6 @@ response
 ただし、そのような仕組みにしようとすると、ここで説明するには複雑な構成になってしまうため、
 ここでは簡易的な仕組みとしています。
 
-
-※API を発行するためには、その権限を持ったユーザーをあらかじめ作成しておく必要があります。
+※API を発行するためには、その権限(manage_api_key)を持ったユーザーをあらかじめ作成しておく必要があります。
 また、そのユーザーに接続するには、API Key ではなく、user / password による認証が必要なようです。
 
