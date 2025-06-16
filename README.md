@@ -12,6 +12,7 @@
 | [2025-05-ngram-search-part2](2025-05-ngram-search-part2/) | 2025年05月に公開の「ElasticsearchでのN-gram検索(Part2) 医薬品マスタの検索」のサンプル。 |
 | [2025-05-search-with-metadata](2025-05-search-with-metadata/) | 2025年05月に公開の「Elasticsearchでのメタデータを考慮した検索」のサンプル。 |
 | [2025-05-semantic-rerank](2025-05-semantic-rerank/) | 2025年05月に公開の「Elasticsearchでのセマンティックリランク」のサンプル。 |
+| [2025-06-rbac](2025-05-rbac/) | 2025年06月に公開の「Elasticsearchのインデックスに対するアクセス制御（API経由での動作確認）」のサンプル。 |
 
 Copyright (c) SIOS Technology, Inc. All rights reserved.
 
