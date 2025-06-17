@@ -6,28 +6,28 @@ https://elastic.sios.jp/category/blog/ で公開予定のブログ
 「Elasticsearchのインデックスに対するアクセス制御（API経由での動作確認）」
 で使用したサンプルアプリケーションです。
 
-このサンプルアプリでは、saled_data* インデックス、および、hr_data* インデックスに対し、
+このサンプルアプリでは、sales_data* インデックスおよび hr_data* インデックスに対し、
 
 - sales_data* インデックスへの読み取り権限を持った API Key によるアクセス
 - hr_data* インデックスへの読み取り権限を持った API Key によるアクセス
-- sales_data* インデックス、および、hr_data* インデックスへの読み取り権限を持った API Key によるアクセス
+- sales_data* および hr_data* インデックスへの読み取り権限を持った API Key によるアクセス
 
 を行っています。
 
 
 # 2. できること
 
-- API Key を使って、インデックスごとの読み取り権を使い分けることができます。
+- API Key を使って、インデックスごとの読み取り権限を使い分けることができます。
 
-# 3. 動作に必要な環境など
+# 3. 動作に必要な環境
 
-- Elasticsearch (筆者は Elastic 8.15.5 (Basic License) で動作確認)
-- Docker の実行環境 (筆者は Rancher Desktop 1.19.1 で動作確認)
+- Elasticsearch （筆者は Elastic 8.15.5 （Basic License） で動作確認）
+- Docker 実行環境 （筆者は Rancher Desktop 1.19.1 で動作確認）
 
 その他、下記は、自動でダウンロードされます。
 
 - Python 3.13
-- elasticsearch 8.15.1 (Elasticsearch の Python用のClient)
+- elasticsearch 8.15.1 （Elasticsearch の Python用Client）
 - streamlit 1.42.2
 - streamlit-authenticator 0.4.2
 
@@ -66,9 +66,9 @@ https://elastic.sios.jp/category/blog/ で公開予定のブログ
 
 [./es_requests/5_create_api_key.md](./es_requests/5_create_api_key.md)
 
-に記載している読み取り用 Access Key の作成リクエストをElastic の Kibana の Console から実行します。
+に記載している読み取り用 API Key の作成リクエストをElastic の Kibana の Console から実行します。
 
-返却された Access Key の encode された文字列を config.yaml ファイルに転記します。
+返却された API Key の encode された文字列を config.yaml ファイルに転記します。
 
 
 ## 4.6. Elasticsearch endpoint URL の取得
@@ -84,53 +84,62 @@ Elastic Kibana の Home 画面から Elasticsearch の endpoint の URL を取�
 
 docker-compose.yml があるディレクトリへ移動します。
 
-```cd app```
+```
+cd app
+```
 
 docker-compose.yml があるディレクトリで下記を実行します。
 
-```docker compose build```
+```
+docker compose build
+```
 
 ## 5.2. コンテナの起動
 
-```docker compose up -d```
+```
+docker compose up -d
+```
 
 ## 5.3. コンテナとの接続
 
-```docker exec -it rbac_sample_202506 /bin/bash```
+```
+docker exec -it rbac_sample_202506 /bin/bash
+```
 
-("rbac_sample_202506"はコンテナ名)
+（"rbac_sample_202506"はコンテナ名）
 
 
 # 6. サンプルプログラムの実行
 
 ## 6.1. ログイン画面の表示
 
-```streamlit run src/app.py```
+```
+streamlit run src/app.py
+```
 
-Web Browser から http://localhost:8501/ にアクセスします。
+Web ブラウザから http://localhost:8501/ にアクセスします。
 
 <img src="imgs/login.png">
 
-## 6.2. ユーザーごとの動作の確認
+## 6.2. ユーザーごとの動作確認
 
 ### 6.2.1. sales_user
 
-まず、sales_user でログインしてみます。
-パスワードは、config.yaml に記載したものを入力します。
+まず、sales_user でログインします。パスワードは config.yaml に記載したものを入力します。
 
 成功すると、検索画面へ遷移します。
 
 <img src="imgs/sales_user_login.png">
 
-[search sales_data] ボタンを押してみます。
+[search sales_data] ボタンを押します。
 
-sales_data* インデックスへの読み取り権があるので、成功します。
+sales_data* インデックスへの読み取り権限があるので、成功します。
 
 <img src="imgs/search_sales_data_success.png">
 
-続いて [search hr_data] ボタンを押してみます。
+続いて [search hr_data] ボタンを押します。
 
-hr_data* インデックスへの読み取り権がないため、エラーとなります。
+hr_data* インデックスへの読み取り権限がないため、エラーとなります。
 
 <img src="imgs/search_hr_data_failed.png">
 
@@ -142,22 +151,21 @@ hr_data* インデックスへの読み取り権がないため、エラーと�
 
 ### 6.2.2. hr_user
 
-同様に hr_user でも動作確認してみます。
+同様に hr_user でも動作確認します。
 
-hr_user でログインします。
-パスワードは、config.yaml に記載したものを入力します。
+hr_user でログインします。パスワードは config.yaml に記載したものを入力します。
 
 成功すると、検索画面へ遷移します。
 
-[search sales_data] ボタンを押してみます。
+[search sales_data] ボタンを押します。
 
-sales_data* インデックスへの読み取り権がないため、エラーとなります。
+sales_data* インデックスへの読み取り権限がないため、エラーとなります。
 
 <img src="imgs/search_sales_data_failed.png">
 
-続いて [search hr_data] ボタンを押してみます。
+続いて [search hr_data] ボタンを押します。
 
-hr_data* インデックスへの読み取り権があるので、成功します。
+hr_data* インデックスへの読み取り権限があるので、成功します。
 
 <img src="imgs/search_hr_data_success.png">
 
@@ -167,36 +175,35 @@ hr_data* インデックスへの読み取り権があるので、成功しま�
 
 最後に sales_and_hr_user で動作確認します。
 
-sales_and_hr_user でログインします。
-パスワードは、config.yaml に記載したものを入力します。
+sales_and_hr_user でログインします。パスワードは config.yaml に記載したものを入力します。
 
 成功すると、検索画面へ遷移します。
 
-[search sales_data] ボタンを押してみます。
+[search sales_data] ボタンを押します。
 
-sales_data* インデックスへの読み取り権があるので、成功します。
+sales_data* インデックスへの読み取り権限があるので、成功します。
 
 <img src="imgs/search_sales_data_success_2.png">
 
-続いて [search hr_data] ボタンを押してみます。
+続いて [search hr_data] ボタンを押します。
 
-hr_data* インデックスへの読み取り権があるので、成功します。
+hr_data* インデックスへの読み取り権限があるので、成功します。
 
 <img src="imgs/search_hr_data_success_2.png">
 
 [Logout] ボタンを押してログアウトします。
 
 
-※停止ボタンは用意していないので、停止させたい場合は、Ctrl+C を押すなどの処置を行ってください。
+※停止ボタンは用意していないので、停止させたい場合は Ctrl+C を押すなどの処置を行ってください。
 
 # 7. ファイルの説明
 
 | 相対ファイルパス | 説明 |
 |---|---|
 | ./README.md | このファイル |
-| [app/.config.yaml](app/config.yaml) | 接続に必要な API Key などを記載するファイル |
-| [app/docker-compose.yml](app/docker-compose.yml) | Docker の Compose ファイル |
-| [app/Dockerfile](app/Dockerfile) | Docerfile |
+| [app/config.yaml](app/config.yaml) | 接続に必要な API Key などを記載するファイル |
+| [app/docker-compose.yml](app/docker-compose.yml) | Docker Compose ファイル |
+| [app/Dockerfile](app/Dockerfile) | Dockerfile |
 | [app/requirements.txt](app/requirements.txt) | 動作に必要なライブラリの指定ファイル |
 | [app/src/common/setup_logger.py](app/src/common/setup_logger.py) | ロガーの設定関数ファイル |
 | [app/src/elastic/es_consts.py](app/src/elastic/es_consts.py) | Elasticsearch 関連の定数ファイル |
@@ -206,5 +213,5 @@ hr_data* インデックスへの読み取り権があるので、成功しま�
 | [es_requests/2_create_index_mapping.md](es_requests/2_create_index_mapping.md) | インデックスのフィールド作成リクエスト |
 | [es_requests/3_create_alias.md](es_requests/3_create_alias.md) | エイリアスの作成リクエスト |
 | [es_requests/4_post_doc.md](es_requests/4_post_doc.md) | ドキュメントの登録リクエスト |
-| [es_requests/5_create_api_key.md](es_requests/5_create_api_key.md) | 読み込み用 API Key の作成リクエスト |
+| [es_requests/5_create_api_key.md](es_requests/5_create_api_key.md) | 読み取り用 API Key の作成リクエスト |
 

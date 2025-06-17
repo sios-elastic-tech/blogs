@@ -1,6 +1,6 @@
-# 読み取り用 Access Key 作成リクエスト
+# 読み取り用 API Key 作成リクエスト
 
-検索時に利用する Access Key を発行するためのリクエスト。
+検索時に利用する API Key を発行するためのリクエスト。
 
 ## request for sales user
 
