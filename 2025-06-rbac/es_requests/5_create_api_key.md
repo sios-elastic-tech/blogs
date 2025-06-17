@@ -2,7 +2,7 @@
 
 検索時に利用する API Key を発行するためのリクエスト。
 
-## request for sales user
+## request for sales_user
 
 ```
 POST /_security/api_key
@@ -37,7 +37,7 @@ response
 
 encoded の値を、config.yaml へ転記します。
 
-## request for hr user
+## request for hr_user
 
 ```
 POST /_security/api_key
@@ -72,7 +72,7 @@ response
 
 encoded の値を、config.yaml へ転記します。
 
-## request for saled_and_hr_user
+## request for sales_and_hr_user
 
 ```
 POST /_security/api_key
@@ -98,7 +98,7 @@ response
 ```
 {
   "id": "*******************",
-  "name": "hr_data_read",
+  "name": "sales_and_hr_data_read",
   "expiration": 1750662367767,
   "api_key": "*******************",
   "encoded": "**********************************************=="
@@ -119,6 +119,6 @@ encoded の値を、config.yaml へ転記します。
 ただし、そのような仕組みにしようとすると、ここで説明するには複雑な構成になってしまうため、
 ここでは簡易的な仕組みとしています。
 
-※API を発行するためには、その権限(manage_api_key)を持ったユーザーをあらかじめ作成しておく必要があります。
-また、そのユーザーに接続するには、API Key ではなく、user / password による認証が必要なようです。
+※API Key を発行するためには、その権限（manage_api_key）を持ったユーザーをあらかじめ作成しておく必要があります。
+また、そのユーザーに接続するには API Key ではなく、user / password による認証が必要です。
 
