@@ -113,6 +113,8 @@ docker exec -it rbac_sample_202506 /bin/bash
 
 ## 6.1. ログイン画面の表示
 
+rbac_sample_202506 コンテナ上の bash から次のコマンドを実行します。
+
 ```
 streamlit run src/app.py
 ```
