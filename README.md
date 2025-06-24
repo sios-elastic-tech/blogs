@@ -13,6 +13,7 @@
 | [2025-05-search-with-metadata](2025-05-search-with-metadata/) | 2025年05月に公開の「Elasticsearchでのメタデータを考慮した検索」のサンプル。 |
 | [2025-05-semantic-rerank](2025-05-semantic-rerank/) | 2025年05月に公開の「Elasticsearchでのセマンティックリランク」のサンプル。 |
 | [2025-06-rbac](2025-06-rbac/) | 2025年06月に公開の「Elasticsearchのインデックスに対するアクセス制御（API経由での動作確認）」のサンプル。 |
+| [2025-07-dls](2025-07-dls/) | 2025年07月に公開の「Elasticsearchのドキュメントごとのアクセス制御（Document Level Security）」のサンプル。 |
 
 Copyright (c) SIOS Technology, Inc. All rights reserved.
 
