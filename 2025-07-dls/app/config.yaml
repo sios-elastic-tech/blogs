@@ -1,0 +1,28 @@
+elasticsearch:
+  endpoint: https://a810732f7f2d4a9ab70558ff244454c6.us-east-1.aws.found.io:443
+cookie:
+  expiry_days: 1
+  key: some_signature_key
+  name: some_cookie_name
+credentials:
+  usernames:
+    user1:
+      name: user1
+      password: p
+      encoded_api_key: UnBDdW41Y0J5X2RHT3g0cF9pLTM6ZExmcElyR1JudHJudVdlSGQ5SWRNZw==
+    user2:
+      name: user2
+      password: p
+      encoded_api_key: U0pDdm41Y0J5X2RHT3g0cDZpX2k6VzVQMjBQQWRoMnVYY3VzUE1JRFZtQQ==
+    user3:
+      name: user3
+      password: p
+      encoded_api_key: YjZXd241Y0I5ZEtPU2NvNlZnYmY6UVZDRlgyZmd0TlM3b0kzQ3JtUUJBdw==
+    user4:
+      name: user4
+      password: p
+      encoded_api_key: U3BDd241Y0J5X2RHT3g0cDJTOVE6MEEwajRGVW1oUVFNaEZHS241dUpmQQ==
+#
+# password は、適宜適切な値を設定し、かつ、ハッシュ化すべきですが、
+# ここでは簡易的なサンプルのため、平文で設定しています。
+# 実際の運用では、セキュリティを考慮して適切な方法でパスワードを管理してください。
