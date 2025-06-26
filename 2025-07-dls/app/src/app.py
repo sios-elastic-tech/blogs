@@ -4,7 +4,7 @@ Copyright (c) SIOS Technology, Inc. All rights reserved.
 MIT License
 """
 
-from typing import Dict
+from typing import Any, Dict
 
 import streamlit as st
 import streamlit_authenticator as stauth
@@ -25,23 +25,26 @@ config = None
 logger = setup_logger(__name__)
 
 
-def search():
+def search() -> None:
     """
     Elasticsearch へ接続して、検索を行う。
     """
 
     index_name = EsConsts.SEARCH_INDEX
 
-    encoded_api_key = config["credentials"]["usernames"][st.session_state[SessionConsts.NAME]]["encoded_api_key"]
+    login_name = st.session_state.get(SessionConsts.NAME)
 
-    es_client = None
+    if login_name is None:
+        st.error("User is not logged in.")
+        return
 
-    if SessionConsts.ES_CLIENT in st.session_state:
-        es_client = st.session_state.get(SessionConsts.ES_CLIENT)
-        if es_client is not None:
-            logger.debug("es_client exists already. Reusing it.")
+    encoded_api_key = config["credentials"]["usernames"][login_name]["encoded_api_key"]
 
-    if es_client is None:
+    es_client = st.session_state.get(SessionConsts.ES_CLIENT)
+
+    if es_client is not None:
+        logger.debug("es_client exists already. Reusing it.")
+    else:
         elasticsearch_endpoint = config["elasticsearch"]["endpoint"]
         logger.debug(f"Elasticsearch Endpoint: {elasticsearch_endpoint}")
         es_client = create_es_client(elasticsearch_endpoint, encoded_api_key)
@@ -55,7 +58,7 @@ def search():
                 es_client = None
 
     if es_client:
-        search_query : Dict = {
+        search_query : Dict[str, Any] = {
             "_source": False,
             "fields": [EsConsts.CONTENT_FIELD_NAME],
             "query" : {
@@ -78,23 +81,25 @@ def search():
         st.write("Failed to create Elasticsearch client.")
 
 
-def logout_callback(info):
+def logout_callback(info: Any) -> None:
     """
     ログアウト時のコールバック関数。
     """
     logger.debug(f"Logout callback info: {info}")
     
-    if SessionConsts.ES_CLIENT in st.session_state:
-        es_client = st.session_state.get(SessionConsts.ES_CLIENT)
+    es_client = st.session_state.get(SessionConsts.ES_CLIENT)
 
-        if es_client is not None:
-            logger.debug("Closing Elasticsearch client.")
+    if es_client is not None:
+        logger.debug("Closing Elasticsearch client.")
+        try:
             es_client.close()
+        except Exception as e:
+            logger.error(f"Failed to close Elasticsearch client: {e}")
 
     st.session_state.clear()
 
 
-def show_login_form():
+def show_login_form(authenticator: stauth.Authenticate) -> None:
     """
     ログインフォームを表示する。
     """
@@ -102,7 +107,9 @@ def show_login_form():
 
     authenticator.login()
 
-    if st.session_state[SessionConsts.AUTHENTICATION_STATUS]:
+    auth_status = st.session_state.get(SessionConsts.AUTHENTICATION_STATUS)
+
+    if auth_status:
         ## ログイン成功
         with st.sidebar:
             st.markdown(f'## Welcome *{st.session_state[SessionConsts.NAME]}*')
@@ -111,11 +118,11 @@ def show_login_form():
         if st.button(label="Search", key=SessionConsts.SEARCH):
             search()
 
-    elif st.session_state[SessionConsts.AUTHENTICATION_STATUS] is False:
+    elif auth_status is False:
         ## ログイン失敗
         st.error('Username/password is incorrect')
 
-    elif st.session_state[SessionConsts.AUTHENTICATION_STATUS] is None:
+    elif auth_status is None:
         ## デフォルト
         st.warning('Please enter your username and password')
 
@@ -137,5 +144,5 @@ if __name__ == '__main__':
         cookie_expiry_days=config['cookie']['expiry_days'],
     )
 
-    show_login_form()
+    show_login_form(authenticator)
  

@@ -25,7 +25,7 @@ https://elastic.sios.jp/category/blog/ で公開予定のブログ
 ## 3. 動作に必要な環境
 
 - Elasticsearch（Platinum License 以上）  
-  ※筆者は Elasticsearch 9.0.2 Enterprise License で動作確認
+  ※筆者は Elasticsearch 9.0.3 Enterprise License で動作確認
 - Docker 実行環境  
   ※筆者は Rancher Desktop 1.19.1 で動作確認
 
