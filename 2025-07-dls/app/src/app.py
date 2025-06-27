@@ -112,7 +112,7 @@ def show_login_form(authenticator: stauth.Authenticate) -> None:
     if auth_status:
         ## ログイン成功
         with st.sidebar:
-            st.markdown(f'## Welcome *{st.session_state[SessionConsts.NAME]}*')
+            st.markdown(f'## Welcome *{st.session_state.get(SessionConsts.NAME)}*')
             authenticator.logout('Logout', 'sidebar', callback=logout_callback)
 
         if st.button(label="Search", key=SessionConsts.SEARCH):

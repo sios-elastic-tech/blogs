@@ -27,7 +27,7 @@ https://elastic.sios.jp/category/blog/ で公開予定のブログ
 - Elasticsearch（Platinum License 以上）  
   ※筆者は Elasticsearch 9.0.3 Enterprise License で動作確認
 - Docker 実行環境  
-  ※筆者は Rancher Desktop 1.19.1 で動作確認
+  ※筆者は Rancher Desktop 1.19.3 で動作確認
 
 その他、下記は自動でダウンロードされます。
 
