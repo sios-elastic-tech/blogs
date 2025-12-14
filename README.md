@@ -1,5 +1,13 @@
 # blogs
 
+※このリポジトリの内容は、下記の URL へ移転しました。
+
+[https://github.com/SIOS-Technology-Inc/elastic-blogs](https://github.com/SIOS-Technology-Inc/elastic-blogs)
+
+---
+
+---
+
 [https://elastic.sios.jp/category/blog/](https://elastic.sios.jp/category/blog/) で公開している Elasticsearch 関連のブログに付随するソース。
 
 | フォルダ | 説明 |
